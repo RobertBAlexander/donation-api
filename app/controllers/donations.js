@@ -3,6 +3,7 @@
 const User = require('../models/user');
 const Donation = require('../models/donation');
 const Candidate = require('../models/candidate');
+const Joi = require('joi');
 
 exports.home = {
 
@@ -20,6 +21,31 @@ exports.home = {
 };
 
 exports.donate = {
+
+  validate: {
+
+    payload: {
+      amount: Joi.number().required(),
+      method: Joi.string().required(),
+      candidate: Joi.string().required(),
+    },
+
+    options: {
+      abortEarly: false,
+    },
+
+    failAction: function (request, reply, source, error) {
+      Candidate.find({}).then(candidates => {
+        reply.view('home', {
+          title: 'Invalid Donation',
+          candidates: candidates,
+          errors: error.data.details,
+        }).code(400);
+      }).catch(err => {
+        reply.redirect('/');
+      });
+    },
+  },
 
   handler: function (request, reply) {
     var userEmail = request.auth.credentials.loggedInUser;
@@ -48,9 +74,14 @@ exports.report = {
 
   handler: function (request, reply) {
     Donation.find({}).populate('donor').populate('candidate').then(allDonations => {
+      let total = 0;
+      allDonations.forEach(donation => {
+        total += donation.amount;
+      });
       reply.view('report', {
         title: 'Donations to Date',
         donations: allDonations,
+        total: total,
       });
     }).catch(err => {
       reply.redirect('/');
