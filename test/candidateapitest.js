@@ -22,4 +22,21 @@ suite('Candidate API tests', function () {
     assert.equal(candidates[1].office, 'President');
 
   });
+
+  test('get one candidate', function () {
+
+    const allCandidatesUrl = 'http://localhost:4000/api/candidates';
+    var res = request('GET', allCandidatesUrl);
+    const candidates = JSON.parse(res.getBody('utf8'));
+
+    const oneCandidateUrl = allCandidatesUrl + '/' + candidates[0]._id;
+    res = request('GET', oneCandidateUrl);
+    const oneCandidate = JSON.parse(res.getBody('utf8'));
+
+    assert.equal(oneCandidate.firstName, 'Lisa');
+    assert.equal(oneCandidate.lastName, 'Simpson');
+    assert.equal(oneCandidate.office, 'President');
+
+  });
+
 });
