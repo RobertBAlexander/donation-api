@@ -18,4 +18,11 @@ suite('Candidate API tests', function () {
     assert.isDefined(returnedCandidate._id);
   });
 
+
+  test('delete a candidate', function () {
+    const c = donationService.createCandidate(newCandidate);
+    assert(donationService.getCandidate(c._id) != null);
+    donationService.deleteOneCandidate(c._id);
+    assert(donationService.getCandidate(c._id) == null);
+  });
 });
