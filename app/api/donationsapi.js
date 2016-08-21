@@ -13,3 +13,15 @@ exports.findAllDonations = {
     });
   },
 };
+
+exports.findDonations = {
+
+  handler: function (request, reply) {
+    Donation.find({ candidate: request.params.id }).then(donations => {
+      reply(donations);
+    }).catch(err => {
+      reply(Boom.badImplementation('error accessing db'));
+    });
+  },
+
+};
