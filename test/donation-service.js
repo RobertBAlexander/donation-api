@@ -9,6 +9,10 @@ class DonationService {
     this.httpService = new SyncHttpService(baseUrl);
   }
 
+  authenticate(user) {
+    return this.httpService.post('/api/users/authenticate', user);
+  }
+
   getCandidates() {
     return this.httpService.get('/api/candidates');
   }
