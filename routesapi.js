@@ -20,4 +20,6 @@ module.exports = [
   { method: 'POST', path: '/api/candidates/{id}/donations', config: DonationsApi.makeDonation },
   { method: 'DELETE', path: '/api/candidates/{id}/donations', config: DonationsApi.deleteDonations },
   { method: 'DELETE', path: '/api/donations', config: DonationsApi.deleteAllDonations },
+
+  { method: 'POST', path: '/api/users/authenticate', config: UsersApi.authenticate },
 ];
