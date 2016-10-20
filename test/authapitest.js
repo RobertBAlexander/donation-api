@@ -8,20 +8,20 @@ const utils = require('../app/api/utils.js');
 suite('Auth API tests', function () {
 
   let users = fixtures.users;
-  let candidates = fixtures.candidates;
+  let donations = fixtures.donations;
 
   const donationService = new DonationService(fixtures.donationService);
 
   test('login-logout', function () {
-    var returnedCandidates = donationService.getCandidates();
-    assert.isNull(returnedCandidates);
+    var returnedDonations = donationService.getAllDonations();
+    assert.isNull(returnedDonations);
 
     const response = donationService.login(users[0]);
-    returnedCandidates = donationService.getCandidates();
-    assert.isNotNull(returnedCandidates);
+    returnedDonations = donationService.getAllDonations();
+    assert.isNotNull(returnedDonations);
 
     donationService.logout();
-    returnedCandidates = donationService.getCandidates();
-    assert.isNull(returnedCandidates);
+    returnedDonations = donationService.getAllDonations();
+    assert.isNull(returnedDonations);
   });
 });

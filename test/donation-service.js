@@ -65,6 +65,10 @@ class DonationService {
     return this.httpService.get('/api/candidates/' + id + '/donations');
   }
 
+  getAllDonations() {
+    return this.httpService.get('/api/donations');
+  }
+
   deleteAllDonations() {
     return this.httpService.delete('/api/donations');
   }
