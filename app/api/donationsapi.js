@@ -46,6 +46,8 @@ exports.makeDonation = {
     donation.candidate = request.params.id;
     donation.donor = utils.getUserIdFromRequest(request);
     donation.save().then(newDonation => {
+      return Donation.findOne(newDonation).populate('candidate').populate('donor');
+    }).then(newDonation => {
       reply(newDonation).code(201);
     }).catch(err => {
       reply(Boom.badImplementation('error making donation'));
