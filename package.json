@@ -20,13 +20,13 @@
     "joi": "^9.0.4",
     "jsonwebtoken": "^7.1.9",
     "lodash": "^4.15.0",
-    "mongoose": "^4.5.8",
+    "mongoose": "^4.12.2",
     "mongoose-seeder": "^1.2.1",
-    "vision": "^4.1.0"
+    "vision": "^4.1.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^3.0.2",
-    "sync-request": "^3.0.1"
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "sync-request": "^4.1.0"
   }
 }
