@@ -43,7 +43,7 @@ mongoose.connection.on('disconnected', function () {
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-let dbURI = 'mongodb://hoothootuser:secret@ds121565.mlab.com:21565/donation';
+let dbURI = 'mongodb://donationuser:secret@ds121565.mlab.com:21565/donation';
 //let dbURI = 'mongodb://localhost/hoot';
 //if (process.env.NODE_ENV === 'production') {
 // dbURI = process.env.MONGODB_URI;
