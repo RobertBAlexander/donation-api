@@ -6,9 +6,10 @@ const utils = require('./utils.js');
 
 exports.findAllDonations = {
 
-  auth: {
+  auth: false,
+  /*{
     strategy: 'jwt',
-  },
+  },*/
 
   handler: function (request, reply) {
     Donation.find({}).populate('donor').populate('candidate').then(donations => {
@@ -21,9 +22,10 @@ exports.findAllDonations = {
 
 exports.findDonations = {
 
-  auth: {
+  auth: false,
+  /*{
     strategy: 'jwt',
-  },
+  },*/
 
   handler: function (request, reply) {
     Donation.find({ candidate: request.params.id }).populate('donor').populate('candidate').then(donations => {
@@ -37,9 +39,10 @@ exports.findDonations = {
 
 exports.makeDonation = {
 
-  auth: {
+  auth: false,
+  /*{
     strategy: 'jwt',
-  },
+  },*/
 
   handler: function (request, reply) {
     const donation = new Donation(request.payload);
@@ -58,9 +61,10 @@ exports.makeDonation = {
 
 exports.deleteAllDonations = {
 
-  auth: {
+  auth: false,
+  /*{
     strategy: 'jwt',
-  },
+  },*/
   handler: function (request, reply) {
     Donation.remove({}).then(result => {
       reply().code(204);
@@ -72,9 +76,10 @@ exports.deleteAllDonations = {
 
 exports.deleteDonations = {
 
-  auth: {
+  auth: false,
+  /*{
     strategy: 'jwt',
-  },
+  },*/
 
   handler: function (request, reply) {
     Donation.remove({ candidate: request.params.id }).then(result => {
